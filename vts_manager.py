@@ -29,7 +29,7 @@ class VTSClient:
         plugin_name="VoiceEmotionController",
         developer="LordLoks",
         token_path=None,
-        ws_url="ws://127.0.0.1:8001",
+        ws_url="ws://192.168.100.2:8001",
         keepalive_interval=5,
     ):
         self.plugin_name = plugin_name
@@ -319,7 +319,7 @@ class VTSController:
         plugin_name="VoiceEmotionController",
         developer="LordLoks",
         token_path=None,
-        ws_url="ws://127.0.0.1:8001",
+        ws_url="ws://192.168.100.2:8001",
         keepalive_interval=5,
     ):
         self.client = VTSClient(

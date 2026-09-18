@@ -454,7 +454,7 @@ def main():
             "confidence": 0.0,
         })
         print(f"[ERROR] Model directory not found: {model_dir}", file=sys.stderr)
-        return
+        sys.exit(1)
 
     if pyaudio is None:
         emit_json({
@@ -466,7 +466,7 @@ def main():
             "confidence": 0.0,
         })
         print("[ERROR] pyaudio is not installed. Install the package: pip install pyaudio", file=sys.stderr)
-        return
+        sys.exit(1)
 
     if pydirectinput is None:
         emit_json({
@@ -478,7 +478,7 @@ def main():
             "confidence": 0.0,
         })
         print("[ERROR] pydirectinput is not installed. Install the package: pip install pydirectinput", file=sys.stderr)
-        return
+        sys.exit(1)
 
     if Model is None or KaldiRecognizer is None:
         emit_json({
@@ -490,7 +490,7 @@ def main():
             "confidence": 0.0,
         })
         print("[ERROR] vosk is not installed. Install the package: pip install vosk", file=sys.stderr)
-        return
+        sys.exit(1)
 
     try:
         model = Model(model_dir)
@@ -504,7 +504,7 @@ def main():
             "confidence": 0.0,
         })
         print(f"[ERROR] Failed to load Vosk model: {exc}", file=sys.stderr)
-        return
+        sys.exit(1)
 
     mic_index, mic_name = find_microphone_index()
     if mic_index is None or mic_name is None:
@@ -517,7 +517,7 @@ def main():
             "confidence": 0.0,
         })
         print("[ERROR] Microphone not found", file=sys.stderr)
-        return
+        sys.exit(1)
 
     print(f"[READY] Microphone: {mic_name}", file=sys.stderr)
     recognizer = KaldiRecognizer(model, 16000)
